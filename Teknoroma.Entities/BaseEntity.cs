@@ -10,7 +10,8 @@ namespace Teknoroma.Entities
     {
         public int ID { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdatedDate { get; set; } 
+        public DateTime? UpdatedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
         public DataStatus Status { get; set; } = DataStatus.Active;
 
     }

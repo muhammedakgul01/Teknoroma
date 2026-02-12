@@ -16,9 +16,9 @@ namespace Teknoroma.BLL.DesignPatterns.SingletonPattern
         {
             get
             {
-                if(_dbInstance == null) _dbInstance = new TeknoromaDbContext();
+                if (_dbInstance == null) _dbInstance = new TeknoromaDbContext();
                 return _dbInstance;
             }
-        } 
+        }
     }
 }

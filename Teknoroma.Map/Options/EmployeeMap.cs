@@ -17,6 +17,11 @@ namespace Teknoroma.Map.Options
         .WithMany(c => c.Employees)
         .HasForeignKey(o => o.StoreID)
         .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.HasOne(x => x.User)
+                .WithOne(x => x.Employee)
+                .HasForeignKey<User>(x => x.EmployeeID);
         }
     }
 }

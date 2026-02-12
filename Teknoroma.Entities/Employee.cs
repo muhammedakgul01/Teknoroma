@@ -18,5 +18,6 @@ namespace Teknoroma.Entities
         public int StoreID { get; set; }
         public Store Store { get; set; }
         public virtual List<Order> Orders { get; set; }
+        public User User { get; set; }
     }
 }

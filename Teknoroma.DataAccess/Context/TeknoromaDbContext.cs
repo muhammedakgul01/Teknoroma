@@ -5,7 +5,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Teknoroma.DataAccess.Configurations;
 using Teknoroma.Entities;
 using Teknoroma.Map.Options;
 
@@ -15,6 +14,17 @@ namespace Teknoroma.DataAccess.Context
     {
         public TeknoromaDbContext(DbContextOptions<TeknoromaDbContext> options) : base(options)
         {
+        }
+
+        public TeknoromaDbContext()
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured) 
+            {
+                optionsBuilder.UseSqlServer("Server=DESKTOP-GJAO1GT\\SQLEXPRESS;Database=TeknoromaDb1;Trusted_Connection=True;TrustServerCertificate=True");
+            }
         }
 
         override protected void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,6 +39,7 @@ namespace Teknoroma.DataAccess.Context
             modelBuilder.ApplyConfiguration(new ProductOfStoreMap());
             modelBuilder.ApplyConfiguration(new StoreMap());
             modelBuilder.ApplyConfiguration(new SupplierMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
         }
 
         public DbSet<CashRegister> CashRegisters { get; set; }
@@ -41,5 +52,6 @@ namespace Teknoroma.DataAccess.Context
         public DbSet<ProductOfStore> ProductOfStores { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
